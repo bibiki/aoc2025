@@ -36,8 +36,9 @@
   (count (get-movables input)))
 
 (defn cnt [[a b] input]
-  (let [r (first (drop a input))]
-    (first (drop b r))))
+  (-> input
+      (nth a)
+      (nth b)))
 
 (defn remove-movables [input]
   (partition (count input)
