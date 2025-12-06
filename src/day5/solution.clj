@@ -1189,15 +1189,8 @@
     (let [[fr fl] (first ranges)
           [sr sl] (second ranges)]
   (if (<= sr fl)
-    (simplify (cons [(min sr fr) (max sl fl)] (rest (rest ranges))) rez)
+    (simplify (cons [fr (max sl fl)] (rest (rest ranges))) rez)
     (simplify (rest ranges) (conj rez [fr fl]))))))
-
-(defn simpler []
-  (let [sorted (sort ranges)
-        first (first (first sorted))
-        last (inc (last (last sorted)))
-        range (range first last)]
-    (count (filter not-spoiled range))))
 
 (defn solution-second [ranges]
   (let [sorted (sort ranges)
